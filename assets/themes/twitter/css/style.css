@@ -1,4 +1,9 @@
 /* Custom container */
+.pre-color{
+background:#000000;
+color:#FFFFFF;
+font-size:1.2em;
+}
 .container-narrow {
   margin: 0 auto;
   max-width: 700px; }
