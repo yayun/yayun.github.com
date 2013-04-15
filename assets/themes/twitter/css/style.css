@@ -1,8 +1,10 @@
 /* Custom container */
+.refer-color{
+background:#00FFFF;}
 .pre-color{
 background:#000000;
 color:#FFFFFF;
-font-size:1.2em;
+font-size:0.9em;
 }
 .container-narrow {
   margin: 0 auto;
