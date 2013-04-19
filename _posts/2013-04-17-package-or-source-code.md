@@ -6,14 +6,14 @@ category: linux
 tags: []
 ---
 {% include JB/setup %}
-####PMS(package manage system)
+#####We may face problems when we install a program .So PMS(package manage system) or source?that is a question.
 
-here is a picture about the process of installing program
+#####We have two methods when we install program :use the package manager or compiling and installing software from source.
+
+####(PMS) :System-level vs application-level package?
+
+Here is a picture about the process of installing program
 <img src="/images/Pms.png"/>
-
-We may face problems when we install a program .So package or source?that is a question.
-
-We have two methods when we install program :use the package manager or compiling and installing software from source.
 
 There are so many [package manager](http://en.wikipedia.org/wiki/Package_management_system) that we can use,such as [apt-get](http://en.wikipedia.org/wiki/Advanced_Packaging_Tool) on the Debian GNU/linux distribution,[yum](http://en.wikipedia.org/wiki/Yellow_dog_Updater,_Modified).We also have [application-level_package_managers](http://en.wikipedia.org/wiki/List_of_software_package_management_systems#Application-level_package_managers),such as [pip](https://pypi.python.org/pypi/pip)(python install package).
 
@@ -31,7 +31,8 @@ Take, for example:
     -Pandoc: written in Haskell and may be useful to Haskell developers in the course of developing Haskell applications, but also useful to others; distributed both via application-level and via systems-level packages.
 
 
-#### Use Source code
+####Source code
+
 1:Ofen you download a file named pkg.tar.gz.here is the method:
 <pre class="pre-color">
 $tar -xvzf pkg.tar.gz
@@ -45,6 +46,7 @@ The biggest benefit of compiling from source is the ability to pick and choose h
 Compiling from source has its advantages, but if problems occur you are on your own. The apt-get package will, on the other hand, almost always work as well as it can.
 
 ####So in conclusion:
+
 <pre>
 Pre-Configurated Package: This package is intended for most users. It is designed to work well with most packages, and does not require any extra libraries for compiling.
 
