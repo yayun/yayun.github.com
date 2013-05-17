@@ -6,6 +6,8 @@ background:#000000;
 color:#FFFFFF;
 font-size:0.9em;
 }
+.pre-style{
+overflow:auto}
 .container-narrow {
   margin: 0 auto;
   max-width: 700px; }

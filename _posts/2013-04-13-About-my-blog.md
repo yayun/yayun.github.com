@@ -25,3 +25,5 @@ My reference:[jekyll-bootstrap](http://jekyllbootstrap.com/);[if you use hyde](h
 Here is their repo:[jekyll](https://github.com/plusjade/jekyll-bootstrap) and [hyde](https://github.com/hyde/hyde)
 Blog that I consult in hyde [jmcman](http://www.jmcman.us/)&nbsp;;
 [webee](http://babyishan.com/blog/2012/05/github_pages_with_hyde)
+
+[Markdown Vim Mode](https://github.com/plasticboy/vim-markdown)

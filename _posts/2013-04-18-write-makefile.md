@@ -135,11 +135,13 @@ $gcc foo1.o foo2.o foo3.o -o foo #link them to final executable file foo
       install: foo
       TAB mkdir -p /usr/local/bin
       TAB rm -f /usr/local/bin/foo
-      TAB cp foo /usr/local/bin/foo
+      TAB cp foo /usr/localh/bin/foo
 
 
 ####PS:
 
 Here I will inturduce something about how to use GNU build system (also called autotools) to produce makefile.It is very simpile.We can use [Automake](http://www.gnu.org/software/automake/manual/automake.html).We can only write 'Makefile.am' and the file is then compiled into an intermediate file:'Makefile.in',by Automake and during installation the final file 'Makefile' is generated from 'Makefile.in' by a shellscript call [configure](http://www.nondot.org/sabre/Mirrored/autoconf-2.12/autoconf_2.html).
+
+[耗子叔的：《跟我一起写Makefile》](http://blog.csdn.net/haoel/article/details/2886)
 
 
