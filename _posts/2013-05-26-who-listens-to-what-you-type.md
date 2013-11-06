@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "who listens to what yo type"
+title: "Who listens to what yo type"
 description: ""
 category: 
 tags: [linux]

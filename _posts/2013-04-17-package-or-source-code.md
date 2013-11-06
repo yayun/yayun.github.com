@@ -15,7 +15,9 @@ tags: []
 Here is a picture about the process of installing program
 <img src="/images/Pms.png"/>
 
-There are so many [package manager](http://en.wikipedia.org/wiki/Package_management_system) that we can use,such as [apt-get](http://en.wikipedia.org/wiki/Advanced_Packaging_Tool) on the Debian GNU/linux distribution,[yum](http://en.wikipedia.org/wiki/Yellow_dog_Updater,_Modified).We also have [application-level_package_managers](http://en.wikipedia.org/wiki/List_of_software_package_management_systems#Application-level_package_managers),such as [pip](https://pypi.python.org/pypi/pip)(python install package).
+There are so many [package manager](http://en.wikipedia.org/wiki/Package_management_system) that we can use,such as [apt-get](http://en.wikipedia.org/wiki/Advanced_Packaging_Tool) on the Debian GNU/linux distribution,[yum](http://en.wikipedia.org/wiki/Yellow_dog_Updater,_Modified).(
+如果你下载了.rpm 或者 .deb 的文件 就直接分别可以用RPM( yum) 和dpkg(apt-get) 这两个包管理工具来安装。RPM包本身是有许多依赖的 ，所以在选择上更倾向apt-get 它有以个自动依赖机制。yum 和apt-get是包管理工具 它们分别处理的是rpm和deb包.
+)We also have [application-level_package_managers](http://en.wikipedia.org/wiki/List_of_software_package_management_systems#Application-level_package_managers),such as [pip](https://pypi.python.org/pypi/pip)(python install package).
 
 So which way we can use ? System-level or Application-level? Application-level manager are add-on package managers for operating system with limited capabilities and for programming languages where developers need the latest libraries.So if you want to install specific function software such as Django you can install it use pip.But if you want to install vim,you should use apt-get or yum.Install ruby use APT where install rails use rubygems.
 
@@ -33,7 +35,7 @@ Take, for example:
 
 ####Source code
 
-1:Ofen you download a file named pkg.tar.gz.here is the method:
+1:Ofen you download a file named pkg.tar.gz.here is the method,you can also download the file using wget:
 <pre class="pre-color">
 $tar -xvzf pkg.tar.gz
 $cd pkg
