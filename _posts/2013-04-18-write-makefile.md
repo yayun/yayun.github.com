@@ -5,18 +5,16 @@ description: ""
 category: linux
 tags: [GNU tools]
 ---
-{% include JB/setup %} 
+{% include JB/setup %}
 
-* Why we need to use Make:
+**Why We Need to Use Make:**
 
-     >>[Make](http://en.wikipedia.org/wiki/Make_(software)(wiki)/[GNU make](http://www.gnu.org/software/make/manual/make.html).Though IDE and language-specific compiler features can also be used to manage a build process,Make remains widely used expecially in Unix.To build a very large program you need an extended set of invocations to to the 'gcc' compiler and utilities like 'ar','ranlib'.It is not necessary to rebuild the object everything if you make changes only to a few files in your source code.The 'make'utility was written mainly to automate rebuilding software by determaining the minmum set of commands taht need to be called do this and invoking them for you in the right order.
+Though IDE and language-specific compiler features can also be used to manage a build process , Make remains widely used expecially in Unix.To build a very large program you need an extended set of invocations to to the 'gcc' compiler and utilities like 'ar','ranlib'.It is not necessary to rebuild the object everything if you make changes only to a few files in your source code.The 'make'utility was written mainly to automate rebuilding software by determaining the minmum set of commands taht need to be called do this and invoking them for you in the right order.   
+In GNU bulid systems,you can just use [automake](http://en.wikipedia.org/wiki/Automake) to produces portable makefiles for use by make program. But it is also necessary to know how to write makefile.
 
-   In GNU bulid systems,you can just use [automake](wiki)(http://en.wikipedia.org/wiki/Automake) to produces portable makefiles for use by make program. But it is also necessary to know how to write makefile.
+**The relationship between Make and Makefile:**
 
-* The relationship between Make and Makefile:
-
-     >>'Make' makes you to complier and recompiler your source code easily.GNU make does its work in two distinct phases. During the first phase it reads all the makefiles, included makefiles, etc. and internalizes all the variables and their values, implicit and explicit rules, and constructs a dependency graph of all the targets and their prerequisites. During the second phase, make uses these internal structures to determine what targets will need to be rebuilt and to invoke the rules necessary to do .'Make' itself has no knowledge about the synax of the files taht it works with,it relies on the files instuction in 'makefile' to figure out what it needs to do such as automatically to build executable programs and libraries frome source by reading files called [makefiles],so we should know how to write makefile.
-
+'Make' makes you to complier and recompiler your source code easily.GNU make does its work in two distinct phases. During the first phase it reads all the makefiles, included makefiles, etc. and internalizes all the variables and their values, implicit and explicit rules, and constructs a dependency graph of all the targets and their prerequisites. During the second phase, make uses these internal structures to determine what targets will need to be rebuilt and to invoke the rules necessary to do .'Make' itself has no knowledge about the synax of the files taht it works with,it relies on the files instuction in 'makefile' to figure out what it needs to do such as automatically to build executable programs and libraries frome source by reading files called [makefiles],so we should know how to write makefile.
 
 <!---  编译链接装载与库* Since makefile makes us compile our code easily, let's discuss how to compile C source code just by gcc.
    If you have a file called `hello.c`,you just type `GCC hello.c -o hello` on your shell.And it will produce a executable file called hello.and you can run it in your shell like this:`./hello`.
@@ -32,7 +30,7 @@ $gcc foo1.o foo2.o foo3.o -o foo #link them to final executable file foo
 [For more informatio GNU make manual](http://www.gnu.org/software/make/manual/html_node/)
  --->
 
-* Basic rule of Makefile
+** Basic rule of Makefile:**
   
 
       target: dependences
@@ -43,30 +41,23 @@ $gcc foo1.o foo2.o foo3.o -o foo #link them to final executable file foo
       tab .......            #TAB are mandatory
       [BLANK LINE]          
       #blank line is not necessary but it is good idea if you would lik backwords compatibility with Unix
+The simpilest makefile:
 
-     >>*What "make" do if we invoke it:Build the dependences;......?
-     The simpilest makefile:
+     hello: hello.o
+     TAB gcc -o hello hello.c
 
+     hello.o: hello.c
+     TAB gcc -c hello.c
+     clean:            #t his is an action have no dependence
+     TAB rm -rf hello hello.o
 
-      hello: hello.o
-      TAB gcc -o hello hello.c
+     install: hello               #make sure that we have file "hello" first
+     TAB mkdir -p /usr/local/bin  #usually we all have it in our os (no need) but it is also necessary 
+     TAB rm -rf /usr/local/bin/hello
+     TAB cp hello /usr/local/bin/hello
 
-      hello.o: hello.c
-      TAB gcc -c hello.c
+But makefile has lots of redundancy: we may have more file like: *.o or *.c ... So it is necessary for us  to use Makefile  variables and abstract rules:`variables=value`,the symbol`$`(variables) is substitude with value.Here is some explain:
 
-      clean:            #t his is an action have no dependence
-      TAB rm -rf hello hello.o
-
-      install: hello               #make sure that we have file "hello" first
-      TAB mkdir -p /usr/local/bin  #usually we all have it in our os (no need) but it is also necessary 
-      TAB rm -rf /usr/local/bin/hello
-      TAB cp hello /usr/local/bin/hello
-
-     >>But makefile has lots of redundancy: we may have more file like: *.o or *.c ... So it is necessary for us  to use Makefile  variables and abstract rules:`variables=value`,the symbol`$`(variables) is substitude with value.
-
-     Here is some explain:
-
-    
       "Build '*.o' (corresponded generated file) from '*.c' (source file)"
       .c.o:
       #Note:No dependence cause it don't make sense in general case.There is no need to indicate dependent file explicitly
@@ -78,8 +69,7 @@ $gcc foo1.o foo2.o foo3.o -o foo #link them to final executable file foo
       TAB gcc $^ -o $@ 
       #`$@` is the target `$^` are all dependencies for the current rule
 
-     Our makefile like this:
-
+Our makefile like this:
 
       CC=gcc
       CFLAGS=-Wall -g
@@ -110,9 +100,7 @@ $gcc foo1.o foo2.o foo3.o -o foo #link them to final executable file foo
       TAB rm -f $(PREFIX)/bin/foo
       TAB cp foo $(PREFIX)/bin/foo
 
-
-     Equal to this :
-
+Equal to this :
 
       foo: foo1.o foo2.o foo3.o foo4.o
       TAB gcc -o foo foo1.o foo2.o foo3.o foo4.o
@@ -138,10 +126,10 @@ $gcc foo1.o foo2.o foo3.o -o foo #link them to final executable file foo
       TAB cp foo /usr/localh/bin/foo
 
 
-####PS:
+Here I will inturduce something about how to use GNU build system (also called autotools) to produce makefile . It is very simpile.We can use [Automake](http://www.gnu.org/software/automake/manual/automake.html).We can only write 'Makefile.am' and the file is then compiled into an intermediate file:'Makefile.in',by Automake and during installation the final file 'Makefile' is generated from 'Makefile.in' by a shellscript call [configure](http://www.nondot.org/sabre/Mirrored/autoconf-2.12/autoconf_2.html).
 
-Here I will inturduce something about how to use GNU build system (also called autotools) to produce makefile.It is very simpile.We can use [Automake](http://www.gnu.org/software/automake/manual/automake.html).We can only write 'Makefile.am' and the file is then compiled into an intermediate file:'Makefile.in',by Automake and during installation the final file 'Makefile' is generated from 'Makefile.in' by a shellscript call [configure](http://www.nondot.org/sabre/Mirrored/autoconf-2.12/autoconf_2.html).
+**Reference:**
 
-[耗子叔的：《跟我一起写Makefile》](http://blog.csdn.net/haoel/article/details/2886)
+[《跟我一起写Makefile》](http://blog.csdn.net/haoel/article/details/2886)
 
 
