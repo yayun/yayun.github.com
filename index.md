@@ -7,8 +7,6 @@ tagline:
 <!--{% assign first_page=site.posts[1] %}
 {{ first_page.content }}-->
 
----
-
 {% for post in site.posts  limit:3  %}
 ---
 ###[{{post.title}}]({{post.url}})
