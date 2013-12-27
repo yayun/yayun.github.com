@@ -7,7 +7,7 @@ tags : [life]
 {% include JB/setup %}
 
 This is my first post since I have setted up my blog. My blog is powered by Jekyll-bootstrap which is charming i think.I gived up for some reasons after i use Hyde at first.Next step I will arrange my previous blog artical to here.And try to write them in english.
-PS: I have almost completely forgotten the konwledge about html/css that I learned before, I should picked it up. 
+PS: I have almost completely forgotten the konwledge about html/css that I learned before, I should picked it up.<!--more--> 
 
 **Some basic command that I would use in Hyde:**
 
@@ -16,6 +16,10 @@ PS: I have almost completely forgotten the konwledge about html/css that I learn
     $cd /path/to/your/site
     $hyde serve
 than you can access http://localhost:8080 to enter your website 
+{% highlight python %}
+def hello():
+    
+{% endhighlight %}
 
 **Reference:**
 

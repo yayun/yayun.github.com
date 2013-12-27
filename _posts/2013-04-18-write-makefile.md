@@ -9,7 +9,7 @@ tags: [GNU tools]
 
 **Why We Need to Use Make:**
 
-Though IDE and language-specific compiler features can also be used to manage a build process , Make remains widely used expecially in Unix.To build a very large program you need an extended set of invocations to to the 'gcc' compiler and utilities like 'ar','ranlib'.It is not necessary to rebuild the object everything if you make changes only to a few files in your source code.The 'make'utility was written mainly to automate rebuilding software by determaining the minmum set of commands taht need to be called do this and invoking them for you in the right order.   
+Though IDE and language-specific compiler features can also be used to manage a build process , Make remains widely used expecially in Unix.To build a very large program you need an extended set of invocations to to the 'gcc' compiler and utilities like 'ar','ranlib'.It is not necessary<!--more--> to rebuild the object everything if you make changes only to a few files in your source code.The 'make'utility was written mainly to automate rebuilding software by determaining the minmum set of commands taht need to be called do this and invoking them for you in the right order.   
 In GNU bulid systems,you can just use [automake](http://en.wikipedia.org/wiki/Automake) to produces portable makefiles for use by make program. But it is also necessary to know how to write makefile.
 
 **The relationship between Make and Makefile:**

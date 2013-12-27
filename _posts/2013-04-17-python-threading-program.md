@@ -39,7 +39,7 @@ False
 [DEBUG] (MainThread) Test two
 </pre>
 
- **Here we can comprehend it like this:
+ **Here we can comprehend it like this:<!--more-->
  
  join() method is called by main-thread( When you create a program , itself is a process which includes a Thread that is main thread.),here the timeout is None (it has the same result if you set the timeout>4) so the main-thread can wait long enough so that the child thread (t) can finish it's task (ofen the thread has a timeout so that it could waste so many time).In the meantime main-thread is like "sleeping".But if you set the timeout`<`4 or we don't have `t.join()`,the main-thread can not wait so long (it can only wait `<4` secends and the thread use 4') and the print is :
 

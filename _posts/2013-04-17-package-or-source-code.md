@@ -11,7 +11,7 @@ We may face problems when we install a program .So PMS(package manage system) or
 
 **PMS**
 
-Here is a picture about the process of installing program
+Here is a picture about the process of installing program<!--more-->
 
 <img src="/images/Pms.png"/>
 
