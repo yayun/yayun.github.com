@@ -5,7 +5,9 @@ markdown: rdiscount
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 auto: true
 pygments: true
-
+paginate: 5
+#设置每页包含的文章数
+#paginate_path: "/index.html"
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
@@ -114,7 +116,7 @@ JB :
   # Set 'provider' to false to turn sharing off globally.
   #
   sharing :
-    provider : false
+    provider : custom
     
   # Settings for all other include helpers can be defined by creating 
   # a hash with key named for the given helper. ex:
