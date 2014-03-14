@@ -16,10 +16,7 @@ PS: I have almost completely forgotten the konwledge about html/css that I learn
     $cd /path/to/your/site
     $hyde serve
 than you can access http://localhost:8080 to enter your website 
-{% highlight python %}
-def hello():
-    
-{% endhighlight %}
+
 
 **Reference:**
 
