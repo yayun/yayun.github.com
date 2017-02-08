@@ -1,0 +1,81 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+
+body {
+    font-family: 'Alegreya', serif;
+    line-height: 1.5em;
+    color: #555;
+    font-size: 16px;
+    margin: 0 auto;
+}
+
+h1,h2 {
+    margin-top: 1em;
+    padding-top: 1em;
+    color: #333;
+}
+
+code, pre {
+    background: #eee;
+}
+
+pre {
+    padding: 1em;
+}
+
+a {
+    color: #e81c4f;
+}
+
+ul {
+    padding-left: 1.5em;
+}
+
+p.meta {
+    color: #bbb;
+}
+
+p.meta img.img-circle {
+    width: 2em;
+    margin: 0 0.3em 0 0;
+}
+
+.img-avatar {
+    width: 5em;
+    height: 5em;
+}
+
+.gray {
+    color: #bbb;
+}
+
+.row-post-header {
+    padding: 1em 0 4em 0;
+    margin-bottom: 15px;
+    color: white;
+    background: url(http://img01.sogoucdn.com/app/a/100540002/500750.jpg) 
+}
+
+.row-post-header h1 {
+    color: white;
+    text-shadow: 0.3px 0.3px 0px #333;
+}
+
+.row-post-header p.meta {
+    color: white;
+    text-shadow: 0.3px 0.3px 0px #333;
+}
+
+.row-post-header a {
+    color: white;
+    text-shadow: 0.3px 0.3px 0px #333;
+}
+
+.row-main img {
+    max-width: 100%;
+    text-align: center;
+}
+
+.row-main table {
+    border: 2px solid #eee;
+}

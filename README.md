@@ -1,10 +1,9 @@
-## Usage
+# README
 
-For more information please see: <http://jekyllbootstrap.com>
++ rake n[*title*]
 
-<pre>
-$rake post title="hello world" #creat post
-$rake page name="about.md" #creat a page
-$rake page name="pages/about.md" #creat nested page
-$rake page name="pages/about" #this will create the file :./pages/about/index.html
-</pre>
+  Create a new post file.
+
++ vim \`rake last\`
+
+  Open the recently created post file.
