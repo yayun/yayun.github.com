@@ -71,11 +71,11 @@ p.meta img.img-circle {
     text-shadow: 0.3px 0.3px 0px #333;
 }
 
+.row-main {
+    padding-bottom: 10em;
+}
+
 .row-main img {
     max-width: 100%;
     text-align: center;
-}
-
-.row-main table {
-    border: 2px solid #eee;
 }
