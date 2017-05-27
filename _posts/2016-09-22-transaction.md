@@ -107,6 +107,10 @@ update acount set amount = amount + 20;
 update account set amount = amount + 20 where uid = 1
 ```
 
+针对 update 操作，mysql 会根据 where 条件，读取第一条满足条件的记录，然后 InnoDB 引擎会将第一条记录返回并加锁（ current read ），
+待 Mysql Server 收到这条加锁记录之后，会再发起一个 Update 请求，更新这条记录。一条记录操作完成，再读取下一条记录，直至没有满足
+条件的记录为止。update 返回操作的行数。
+
 ### 5. RC 模式下的 Phantom Read 现象
 
 之前在线上有遇到过一个类似的并发问题, 不过原因来自于 InnoDB 中 RC 模式的 phantom read 现象。
