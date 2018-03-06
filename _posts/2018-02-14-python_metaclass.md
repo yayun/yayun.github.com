@@ -230,3 +230,86 @@ MyClass = type('MyClass', (), {})
 ```
 
 因为*type* 事实上就是一个 metaclass, *type* 是Python 用来创建所有类的 metaclass！
+Now you wonder why the heck is it written in lowercase, and not Type?
+
+为什么我们把 *type* 写成小写的type 而不是大写的呢？
+我们可以类比这些：
+str 类创建字符串对象
+int 类创建整型对象
+type 类创建类对象
+
+可以使用 __class__ 属性来检查
+
+Python 中一切皆是对象. 包括: ints string function 和 class. 所有的都是对象。所有的对象都是从类中创建的：
+
+```python
+>>> age = 35
+>>> age.__class__
+<type 'int'>
+>>> name = 'bob'
+>>> name.__class__
+<type 'str'>
+>>> def foo(): pass
+>>> foo.__class__
+<type 'function'>
+>>> class Bar(object): pass
+>>> b = Bar()
+>>> b.__class__
+<class '__main__.Bar'>
+```
+
+__class__ 的 __class__ 是什么呢？
+
+```python
+>>> age.__class__.__class__
+<type 'type'>
+>>> name.__class__.__class__
+<type 'type'>
+>>> foo.__class__.__class__
+<type 'type'>
+>>> b.__class__.__class__
+<type 'type'>
+```
+
+metaclass 是创建类对象的原料. 你也可以把他叫成是类工厂.
+
+*type* 是 Python 内置的 metaclass, 我们也可以使用自己的 metaclass 来创建类.
+
+
+## 4. __metaclass__ 属性
+
+在写一个类的时候我们可以给一个类创建一个 __metaclass__ 属性:
+
+```python
+class Foo(object):
+    __metaclass__ = something ...
+    ...
+```
+
+如果我们这样写，Python 就会使用 metaclass 来创建 Foo 类.
+
+如果这样写，小心些。我们开始写了 class Foo(object), 但是 Foo 对象还没有在内存中创建。
+
+Python 会在类定义中查看 __metaclass__, 如果发现了它，就会使用这个 metaclass 来创建 Foo class 对象. 如果在类定义中没有发现 metaclass，就会使用 type 来创建 class.
+
+当我们使用
+
+```python
+class Foo(Bar):
+    pass
+```
+Python 做了这些事情：
+
+查看在 Foo 类中有没有 __metaclass__ 属性?
+
+如果有，就会在在内存中创建一个类对象，使用 Foo 名字并且使用 metaclass.
+
+如果 Python 没有发现 __metaclass__, 就会继续在当前模块中找有没有 __metaclass__, 如果找到了就会做相同的事情。（这种情况只会发生在 old-style class 中，就是那种不继承任何类的类）
+
+如果没有发现任何 __metaclass__, 就会使用 Bar 的 __metaclass__ （有可能是type）来创建类对象.
+
+Be careful here that the __metaclass__ attribute will not be inherited, the metaclass of the parent (Bar.__class__) will be. If Bar used a __metaclass__ attribute that created Bar with type() (and not type.__new__()), the subclasses will not inherit that behavior.
+注意：__metaclass__ 属性不会被继承,
+
+
+
