@@ -306,10 +306,95 @@ Python 做了这些事情：
 
 如果 Python 没有发现 __metaclass__, 就会继续在当前模块中找有没有 __metaclass__, 如果找到了就会做相同的事情。（这种情况只会发生在 old-style class 中，就是那种不继承任何类的类）
 
-如果没有发现任何 __metaclass__, 就会使用 Bar 的 __metaclass__ （有可能是type）来创建类对象.
+如果没有发现任何 __metaclass__, 就会使用 Bar 的 __metaclass__ （有可能是 type ）来创建类对象.
 
 Be careful here that the __metaclass__ attribute will not be inherited, the metaclass of the parent (Bar.__class__) will be. If Bar used a __metaclass__ attribute that created Bar with type() (and not type.__new__()), the subclasses will not inherit that behavior.
-注意：__metaclass__ 属性不会被继承,
+(这句没有太看懂)
+
+可是我们可以往 __metaclass__ 中放置什么呢？
+： 所有可以创建类的东西都可以放
+
+什么可以创建类呢？
+
+## 5. 定制 metaclasses
+
+使用 metaclass 的主要目的就是在类被创建的时候动态的改变这个类.
+
+You usually do this for APIs, where you want to create classes matching the current context.
+
+假设我们想要当前模块的所有的 class 的属性都是大写字母. 有好几种方式做这件事情，但是其中一种方式就是在模块级别设置一个 __metaclass__.
+
+使用这种方式，所有在这个模块中的类都会使用这个 metaclass 来创建，我们只需要告诉这个 metaclass 把所有的属性转成大写就好了.
+
+Luckily, __metaclass__ can actually be any callable, it doesn't need to be a formal class (I know, something with 'class' in its name doesn't need to be a class, go figure... but it's helpful).
+
+下面是一个简单的例子：
+
+```python
+# the metaclass will automatically get passed the same argument
+# that you usually pass to `type`
+def upper_attr(future_class_name, future_class_parents, future_class_attr):
+    """
+      Return a class object, with the list of its attribute turned
+      into uppercase.
+    """
+
+    # pick up any attribute that doesn't start with '__' and uppercase it
+    uppercase_attr = {}
+    for name, val in future_class_attr.items():
+        if not name.startswith('__'):
+            uppercase_attr[name.upper()] = val
+        else:
+            uppercase_attr[name] = val
+
+    # let `type` do the class creation
+    return type(future_class_name, future_class_parents, uppercase_attr)
+
+__metaclass__ = upper_attr # this will affect all classes in the module
+
+class Foo(): # global __metaclass__ won't work with "object" though
+    # but we can define __metaclass__ here instead to affect only this class
+    # and this will work with "object" children
+    bar = 'bip'
+
+print(hasattr(Foo, 'bar'))
+# Out: False
+print(hasattr(Foo, 'BAR'))
+# Out: True
+
+f = Foo()
+print(f.BAR)
+# Out: 'bip'
+```
+
+下面的例子我们做相同的事情，但是使用一个真正的 class 作为 metaclass
+
+```python
+# remember that `type` is actually a class like `str` and `int`
+# so you can inherit from it
+class UpperAttrMetaclass(type):
+    # __new__ is the method called before __init__
+    # it's the method that creates the object and returns it
+    # while __init__ just initializes the object passed as parameter
+    # you rarely use __new__, except when you want to control how the object
+    # is created.
+    # here the created object is the class, and we want to customize it
+    # so we override __new__
+    # you can do some stuff in __init__ too if you wish
+    # some advanced use involves overriding __call__ as well, but we won't
+    # see this
+    def __new__(upperattr_metaclass, future_class_name,
+                future_class_parents, future_class_attr):
+
+        uppercase_attr = {}
+        for name, val in future_class_attr.items():
+            if not name.startswith('__'):
+                uppercase_attr[name.upper()] = val
+            else:
+                uppercase_attr[name] = val
+
+        return type(future_class_name, future_class_parents, uppercase_attr)
+```
 
 
 
