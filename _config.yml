@@ -6,9 +6,9 @@ paginate: 1
 
 # About/contact
 author:
-  name: Yayun
+  name: yayunx 
   url: http://yayun.github.io
-  avatar_url: http://tva4.sinaimg.cn/crop.75.27.225.225.180/6978184djw1e9bshab384j20ag07t74w.jpg
+  avatar_url: https://avatars2.githubusercontent.com/u/2765064?s=60&v=4
 
 # Gems
 gems:
@@ -16,7 +16,7 @@ gems:
 
 #Others
 markdown: kramdown
-highlighter: pygments
+# highlighter: pygments
 kramdown:
   input: GFM
   auto_ids: true

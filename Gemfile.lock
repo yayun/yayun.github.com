@@ -43,6 +43,7 @@ GEM
 
 PLATFORMS
   ruby
+  universal-darwin-18
 
 DEPENDENCIES
   jekyll
@@ -51,4 +52,4 @@ DEPENDENCIES
   pygments.rb
 
 BUNDLED WITH
-   1.13.6
+   2.2.2
