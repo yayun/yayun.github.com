@@ -7,3 +7,5 @@
 + vim \`rake last\`
 
   Open the recently created post file.
+
++ rake server
